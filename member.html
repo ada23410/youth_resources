@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="./js/slick.css">
+    <link rel="stylesheet" href="./js/slick-theme.css">
+    <title>會員頁面</title>
+    <style>
+        /* 導覽列 */
+        .container {
+            max-width: 80%;
+        }
+        .navbar {
+            background-color: #6CC3C1;
+            box-shadow: 2px 2px 2px 1px rgba(119, 119, 119, 0.2);
+        }
+
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        .nav-item > a {
+            font-size: 1.2rem;
+        }
+
+        .search {
+            width: 220px;
+            margin-right: 20px;
+            vertical-align: middle;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .search > input.search-bar {
+            width: 220px;
+            height: 35px;
+            background: #ffffff;
+            border: none;
+            font-size: 10pt;
+            float: left;
+            color: #63717f;
+            padding-left: 45px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+        }
+
+        .search .search-icon {
+            position: absolute;
+            font-size: small;
+            top: 0;
+            margin-left: 15px;
+            margin-top: 8px;
+            z-index: 1;
+            color: #4f5b66;
+        }
+
+        .fa-user {
+            color: black;
+        }
+
+        .skipnav {
+            position: absolute;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px,1px,1px,1px);
+            top: 0;
+            left: -76px;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 0 0 1px #E0FFFD, 0 0 0 8px white, 0 0 0 10px #E0FFFD;
+            color: black;
+        }
+        /* main */
+        .main {
+            min-height: 55vh;
+            margin: 150px 0 100px 0;   
+        }
+        .member-info {
+            width: 540px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .member-photo {
+            position: relative;
+        }
+
+        .member-photo .upload {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #FEBF56;
+            color: #ffffff;
+            border: 1.5px solid #ffffff;
+        }
+
+        .member-info .img-wrap{
+            width: 150px;
+            height: 150px;
+            background-color: #63717f;
+            border: 1.5px solid #FEBF56;
+            border-radius: 50%;
+            overflow: hidden;    
+        }
+        .member-info .img-wrap img {
+            width: 100%;
+            object-fit: contain;
+        }
+        .member-name {
+            font-size: 1.5rem;
+        }
+        .edit {
+            background-color: #6CC3C1;
+            border: transparent;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 8px 20px;
+        }
+        .member-feature {
+            width: 100%;
+            margin: 100px 0 0 0;
+        }
+        .member-feature ul {
+            border-bottom: 1px solid rgb(228, 228, 228);
+        }
+
+        .member-feature ul li button{
+            font-size: 1.2rem;
+            color: #000000;
+            padding: 8px 20px;
+            margin-right: 10px;
+            border-radius: 5px 5px 0 0;
+            border: transparent;
+        }
+        .member-feature ul li button:hover{
+            font-size: 1.2rem;
+            color: #ffffff;
+            background-color: #6CC3C1;
+            padding: 8px 20px;
+            margin-right: 10px;
+            border-radius: 5px 5px 0 0;
+            border: transparent;
+        }
+
+        .member-feature ul li button:active{
+            font-size: 1.2rem;
+            color: #ffffff;
+            background-color: #6CC3C1;
+            padding: 8px 20px;
+            margin-right: 10px;
+            border-radius: 5px 5px 0 0;
+            border: transparent;
+        }
+        .member-feature ul li button:focus{
+            font-size: 1.2rem;
+            color: #ffffff;
+            background-color: #6CC3C1;
+            padding: 8px 20px;
+            margin-right: 10px;
+            border-radius: 5px 5px 0 0;
+            border: transparent;
+        }
+        .resource-news .title {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+        .wrap-box {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ececec;
+            border-radius: 5px;
+            overflow: scroll;
+        }
+        .wrap-box::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+        .wrap-box::-webkit-scrollbar-track  {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+        .wrap-box .time {
+            width: 20%;
+        }
+        h4 {
+            font-size: 20px;
+        }
+        .sorting {
+            margin-right: calc(50% / 2);
+        }
+        select {
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+            background: url(./svg/angle-right-solid.svg)92% 50%  no-repeat scroll transparent;
+            background-size: 10%;
+            padding-right: 14px;
+        }
+        select::-ms-expand { 
+            display: none; 
+        }
+
+        .main-select {
+            padding: 8px 25px 8px 15px;
+            border: 1px solid #4f5b66;
+            border-radius: 5px;
+        }
+        .main-input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+        }
+        .sidebar {
+            /* margin: 0 auto; */
+            padding: 0 4% 4% 4%;
+            background-color: #F2F2F2;
+        }
+        .subtitle {
+            font-size: 1.2rem;
+        }
+        .subitem {
+            font-size: 1rem;
+        }
+        .content {
+            padding: 0 5% 0 1%;
+        }
+        .tag {
+            text-decoration: none;
+            color: #0652A4;
+            border: 1px solid #0652A4;
+            border-radius: 10px;
+            padding: 5px;
+
+        }
+        .gov{
+            font-size: 1.25rem;
+            padding: 0 0 10px 0;
+            border-bottom: 0.5px solid #D8D8D8;
+
+        }
+        .time{
+            font-size: 1.25rem;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .card-head {
+            position: relative;
+        }
+
+        .card-head > .bookmark {
+            position: absolute;
+            width: 8%;
+            right: 15px;
+            top: 15px;
+        }
+
+        .card-title {
+            position: absolute;
+            left: 15px;
+            bottom: 8px;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .pagination a {
+            color: #EB990F;
+            float: left;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #EB990F;
+            border-radius: 50%;
+        }
+
+        .pagination a.active {
+            background-color: #EB990F;
+            color: white;
+            border: 1px solid #EB990F;
+        }
+        .passport-content .title {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .resume-content {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .resume-content .title{
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        .creatResume {
+            background-color: #EB990F;
+            color: #ffffff;
+            border-radius: 5px;
+            border: transparent;
+            padding: 10px 30px;
+        }
+
+        .modal-body .img-wrap{
+            width: 260px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .modal-body .img-wrap img{
+            width: 100%;
+            object-fit: contain;
+        }
+
+        @media screen and (max-width:765px){
+            .pagination {
+                display: flex;
+                justify-content: center;
+                margin: 0 auto;
+            }
+
+        .pagination a {
+                color: #EB990F;
+                float: left;
+                padding: 5px 12px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #EB990F;
+                border-radius: 50%;
+            }
+
+        .pagination a.active {
+                background-color: #EB990F;
+                color: white;
+                border: 1px solid #EB990F;
+            }
+            
+        }     
+
+        /* footer */
+        footer {
+            background-color: #6CC3C1;
+
+        }
+        .footer-info {
+            padding: 0;
+        }
+        .footer-info > li {
+            list-style: none;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        .logo {
+            width: 70%;
+        }
+
+        .copy-write {
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #4F8D8B;
+        }
+
+        .copy-write > p{
+            margin: 0;   
+            color: #ffffff; 
+            font-size: 1rem;
+            font-weight: 300;     
+        }
+
+        .footer-link {
+            margin: 140px 0 50px 0;
+        }
+        ul li > .footer-link {
+            color: #000000;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+        li > .breadcrumb-link {
+            font-size: 1rem;
+            color: #ffffff; 
+            font-weight: 300;
+        }
+
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: #ffffff;
+            content: "\2758 ";
+        }
+
+        @media screen and (max-width:765px){
+            .footer-link {
+                margin: 0;
+                
+            }
+            
+        }
+
+    </style>
+</head>
+<body>
+<!-- 導覽列 -->
+<nav class="navbar navbar-expand-sm navbar-light fixed-top">
+    <div class="container">
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0 py-3">
+                <li class="nav-item">
+                    <a href="#nav" assesskey="U" id="nav" title="常用快速鍵 ALT + U">:::</a>
+                </li> 
+                <li class="nav-item me-3">
+                    <a class="nav-link active" aria-current="page" href="#">首頁</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">關於本站</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">最新消息</a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">最新消息</a>
+                </li>
+                <li class="nav-item dropdown me-3">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">主題資源</a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown03">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="nav-link" href="#">專題策展</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">青年護照</a>
+                </li>
+            </ul>
+            <form class="menu-user d-flex align-items-center">           
+                <div class="search">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input class="search-bar" type="text" placeholder="輸入關鍵字" aria-label="Search">
+                </div>          
+                <a href="#"><i class="fa-solid fa-user"></i></a>
+            </form>
+        </div>
+    </div>
+</nav>
+<!-- main -->
+<div class="main">
+    <div class="container">
+        <!-- 會員基本資訊 -->
+        <div class="member-info">
+            <div class="member-photo">
+                <div class="img-wrap">
+                    <img src="./svg/budka-damdinsuren-IrQmtib-ER4-unsplash.jpg" alt="">
+                </div>
+                <button type="button" class="upload"><i class="fa-solid fa-camera"></i></button>
+            </div>
+            <h1 class="member-name text-center mt-3">會員姓名</h1>
+            <p class="member-email text-center">AliceLing@faninsights.io</p>
+            <a href="#">
+                <button type="button" class="edit"><i class="fa-solid fa-pen"></i>編輯會員資料</button>
+            </a>
+        </div>
+        <!-- 頁籤 -->
+        <div class="member-feature">
+            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="resource active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#resource" type="button" role="tab" aria-controls="pills-home" aria-selected="true">收藏資源</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="passport" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#passport" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">青年護照</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="resume" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#resume" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">我的履歷</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="media" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#media" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">短影音</button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <!-- 收藏資源 -->
+                <div class="tab-pane fade show active mt-5" id="resource" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="resource-news">
+                        <div class="title text-center">專案更新資訊</div>
+                        <div class="wrap-box mt-5">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="time" scope="col">更新日期</th>
+                                        <th class="name" scope="col">專案名稱</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">2022-03-22 10:00</th>
+                                        <td>臺北市政府「台北青年職涯儲值護照」方案<span class="badge bg-primary">更新</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2022-03-22 10:00</th>
+                                        <td>臺北市政府「台北青年職涯儲值護照」方案<span class="badge bg-primary">更新</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2022-03-22 10:00</th>
+                                        <td>臺北市政府「台北青年職涯儲值護照」方案<span class="badge bg-primary">更新</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2022-03-22 10:00</th>
+                                        <td>臺北市政府「台北青年職涯儲值護照」方案<span class="badge bg-primary">更新</span></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2022-03-22 10:00</th>
+                                        <td>臺北市政府「台北青年職涯儲值護照」方案<span class="badge bg-primary">更新</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- 我的收藏 -->
+                    <div class="title text-center mt-5">我的收藏</div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md col-sm-12 my-5 ">
+                        <div class="pagination">
+                            <a href="#"><i class="fa-solid fa-arrow-left"></i></a>
+                            <a href="#">1</a>
+                            <a href="#" class="active">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 青年護照 -->
+                <div class="tab-pane fade" id="passport" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="passport-content">
+                        <div class="title text-center mt-5">我的證書</div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md col-sm-12 my-5 ">
+                            <div class="pagination">
+                                <a href="#"><i class="fa-solid fa-arrow-left"></i></a>
+                                <a href="#">1</a>
+                                <a href="#" class="active">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 我的履歷 -->
+                <div class="tab-pane fade" id="resume" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="resume-content">
+                        <button type="button" class="creatResume" data-bs-toggle="modal" data-bs-target="#resumeStep1">
+                            <i class="fa-solid fa-plus">新增履歷</i>
+                        </button>
+                        <div class="title text-center mt-5">我的履歷</div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-12 mt-4">
+                                <div class="card shadow-sm">
+                                    <div class="card-head">
+                                        <img class="bookmark" src="./svg/bookmark-solid.svg" alt="">
+                                        <svg class="bd-placeholder-img card-img-top" width="100%" height="323" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                        </svg>
+                                        <span class="card-title">2022 年科技部補助博士生赴西班牙研習計畫</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <h4 class="gov">科技部科教國合司</h4>
+                                        <span class="time">
+                                            <i class="fa-solid fa-calendar-days"></i>
+                                            2021.01.01 - 2022.01.01</span>
+                                        <div class="tag-item my-2">
+                                            <a class="tag" ref="#">＃社會福利</a>
+                                            <a class="tag" href="#">＃地方創生</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md col-sm-12 my-5 ">
+                            <div class="pagination">
+                                <a href="#"><i class="fa-solid fa-arrow-left"></i></a>
+                                <a href="#">1</a>
+                                <a href="#" class="active">2</a>
+                                <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
+                                <a href="#">6</a>
+                                <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 短影音 -->
+                <div class="tab-pane fade" id="media" role="tabpanel" aria-labelledby="pills-contact-tab">4</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 my-5">                 
+                <ul class="footer-info">
+                    <li><a id="accesskeyZ" accesskey="Z" href="#accesskeyZ" title="下方選單連結區，此區塊列有[意見信箱]、[資訊安全政策]、[隱私權政策]等連結">
+                        <span>:::</span></a></li>
+                    <li><a href="#"><img class="logo" src="./svg/logo.svg" alt="logo"></a></li>
+                    <li class="mt-4"><i class="fa-solid fa-location-dot"></i>&ensp;10055 台北市中正區徐州路5號14樓</li>
+                    <li class="mt-2"><i class="fa-solid fa-phone"></i>&ensp;＋886-2-7736-5111</li>
+                    <li class="mt-2"><i class="fa-solid fa-print"></i>&ensp;＋886-2-2356-6307</li>
+                    <li class="mt-2"><i class="fa-solid fa-envelope-open-text"></i>&ensp;YDA@MAIL.YDA.GOV.TW</li>
+                </ul>
+            </div> 
+            <div class="footer-link col-md-8">
+                <div class="row">           
+                    <div class="col-md col-sm">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><h5>主題資源</h5></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">職涯發展</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">創業經營</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">社會福利</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md align-self-end">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">地方創生</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">藝文生活</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">公共參與</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md me-5 align-self-center">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">國際連結</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">健康促進</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><h5 class="d-block">資源專區</h5></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">高中生</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">原住民</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">新住民</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+                        <ul class="nav flex-column">
+                            <li class="nav-item mb-2"><h5 class="d-block">特色服務</h5></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">青年護照</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="footer-link p-0">專題策展</a></li>
+                        </ul>
+                    </div>                
+                </div>                         
+            </div>               
+        </div>
+    </div>
+</footer>
+<div class="copy-write py-4">
+    <div class="row">
+        <ul class="breadcrumb justify-content-center">
+            <li><a class="breadcrumb-link" href="#">政府網站資料開放宣告</a></li>
+            <li><a class="breadcrumb-link" href="#">青年署在哪裡</a></li>
+            <li><a class="breadcrumb-link" href="#">聯絡我們</a></li>
+            <li><a class="breadcrumb-link" href="#">隱私權與資訊安全</a></li>               
+        </ul>
+    </div>
+    <p>版權所有 2022 @ 教育部青年發展署</p>
+
+</div>
+<!-- 我的履歷製作Modal step1-->
+<div class="modal fade" id="resumeStep1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="resumeLabel">選擇履歷版型</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body my-3">
+                <div class="resume-modal d-flex justify-content-center">
+                    <div class="a_type me-5">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            版型A
+                        </label>
+                        <div class="img-wrap">
+                            <img src="./svg/版面選擇小圖_A.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="b_type">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            版型B
+                        </label>
+                        <div class="img-wrap">
+                            <img src="./svg/版面選擇小圖_B.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">返回</button>
+                <button type="button" class="btn btn-primary">下一步</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function (){
+            $('')
+        });
+    </script>
+</body>
+</html>

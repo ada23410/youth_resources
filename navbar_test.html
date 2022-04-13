@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>navbar_test</title>
+    <style>
+        /* 導覽列 */
+        .container {
+            max-width: 90%;
+        }
+        .navbar {
+            background-color: #6CC3C1;
+            box-sizing: border-box;
+            box-shadow: 2px 2px 2px 1px rgba(119, 119, 119, 0.2);   
+        }
+
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        .nav-item > a {
+            font-size: 1.2rem;
+        }
+        .search {
+            width: 220px;
+            margin-right: 20px;
+            vertical-align: middle;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .search > input.search-bar {
+            width: 220px;
+            height: 35px;
+            background: #ffffff;
+            border: none;
+            font-size: 10pt;
+            float: left;
+            color: #63717f;
+            padding-left: 45px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            border-radius: 50px;
+        }
+
+        .search .search-icon {
+            position: absolute;
+            font-size: small;
+            top: 0;
+            margin-left: 15px;
+            margin-top: 8px;
+            z-index: 1;
+            color: #4f5b66;
+        }
+
+        .fa-user {
+            color: black;
+        }
+        .navbar .megamenu{ 
+            padding: 1rem; 
+        }
+
+        .skipnav {
+            position: absolute;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px 1px 1px 1px);
+            clip: rect(1px,1px,1px,1px);
+            top: 0;
+            left: -76px;
+            background-color: white;
+            padding: 10px;
+            box-shadow: 0 0 0 1px #E0FFFD, 0 0 0 8px white, 0 0 0 10px #E0FFFD;
+            color: black;
+        }
+
+        .title {
+            font-size: 1.2rem;
+        }
+
+        .list-unstyled > li {
+            margin-top: 10px;
+        }
+
+        .list-unstyled > li > a{
+            font-size: 1rem;
+            color: #63717f;
+        }
+
+        @media all and (min-width: 992px) {          
+            .navbar .has-megamenu{
+                position:static!important;
+            }
+            .navbar .megamenu{
+                left: calc(50% / 4); 
+                width: 80%; 
+                padding: auto 0;
+                margin-top:0; 
+            }          
+        }	
+
+        /* ============ mobile view ============ */
+        @media(max-width: 991px){
+            .navbar.fixed-top .navbar-collapse, .navbar.sticky-top .navbar-collapse{
+                overflow-y: auto;
+                max-height: 90vh;
+                margin-top:10px;
+            }
+        }
+    </style>
+</head>
+<body class="d-flex flex-column h-100">
+<section>
+    <a href="#main" class="skipnav">跳到主要內容區塊</a>
+</section>
+    <nav class="navbar navbar-expand-lg navbar-light py-4">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main_nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="#nav" assesskey="U" id="nav" title="常用快速鍵 ALT + U">:::</a>
+                    </li> 
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">
+                            <img src="./svg/logo.svg" alt="" style="width: 100%;">
+                        </a>
+                    </li>
+                    <li class="nav-item active me-3">
+                        <a class="nav-link" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">關於本站</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">最新消息</a>
+                    </li>
+                    <li class="nav-item dropdown has-megamenu me-3">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">主題資源</a>
+                        <div class="dropdown-menu megamenu" role="menu">  
+                            <div class="row g-3">
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title"><a href="#">職涯發展</a></h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">實習與工讀</a></li>
+                                            <li><a href="#">就業資訊</a></li>
+                                            <li><a href="#">職業訓練</a></li>
+                                            <li><a href="#">升學與進修</a></li>
+                                            <li><a href="#">理財</a></li>
+                                        </ul>
+                                    </div> 
+                                </div>
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title"><a href="#">創業經營</a></h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">創業資源</a></li>
+                                            <li><a href="#">公司經營管理</a></li>
+                                            <li><a href="#">稅務</a></li>
+                                            <li><a href="#">智財與法律</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title"><a href="#">社會福利</a></h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">育兒照顧</a></li>
+                                            <li><a href="#">生活補助</a></li>
+                                            <li><a href="#">友善住宅</a></li>
+                                            <li><a href="#">家庭支持</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>    
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title"><a href="#">地方創生</a></h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">認識台灣</a></li>
+                                            <li><a href="#">社區營造</a></li>
+                                            <li><a href="#">青年培力</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">藝文生活</h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">藝文獎補助</a></li>
+                                            <li><a href="#">展覽與活動</a></li>
+                                            <li><a href="#">休閒觀光</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">公共參與</h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">青年志工</a></li>
+                                            <li><a href="#">公民權益與法律</a></li>
+                                            <li><a href="#">公民議題</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">國際連結</h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">獎學金與補助</a></li>
+                                            <li><a href="#">海外志工</a></li>
+                                            <li><a href="#">國際人才交流</a></li>
+                                            <li><a href="#">跨文化學習</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                                <div class="col-lg col-6">
+                                    <div class="col-megamenu">
+                                        <h6 class="title">健康促進</h6>
+                                        <ul class="list-unstyled">
+                                            <li><a href="#">心理健康</a></li>
+                                            <li><a href="#">健康管理</a></li>
+                                            <li><a href="#">體育運動</a></li>
+                                            <li><a href="#">毒品防制</a></li>
+                                        </ul>
+                                    </div>  
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" href="#">專題策展</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">青年護照</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <div class="search">
+                            <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input class="search-bar" type="text" placeholder="輸入關鍵字" aria-label="Search">
+                        </div>  
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">會員登入</a></li>
+                            <li><a class="dropdown-item" href="#">會員註冊</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div> 
+        </div>
+    </nav>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script> 
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+        /////// Prevent closing from click inside dropdown
+        document.querySelectorAll('.dropdown-menu').forEach(function(element){
+        	    element.addEventListener('click', function (e) {
+        		e.stopPropagation();
+        	});
+            })
+        }); 
+	// DOMContentLoaded  end
+    </script>  
+</body>
+</html>
